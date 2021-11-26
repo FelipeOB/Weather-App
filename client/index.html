@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Weather App for dummies</h1>
+    <textarea id="city-name"></textarea>
+    <button id="getCityWeather" class="btn-controll" onclick="weatherController.getCityWeather()" type="button">Start</button>
+    <div id="city-weather" style="display: none;"></div>
+</body>
+<script src="views/View.js"></script>
+<script src="services/Bind.js"></script>
+<script src="services/ProxyFactory.js"></script>
+<script src="controllers/WeatherController.js"></script>
+<script src="helpers/WeatherHelper.js"></script>
+<script src="models/WeatherModel.js"></script>
+<script src="views/WeatherView.js"></script>
+<script>
+    let weatherHelper = new WeatherHelper();
+    let weatherController = new WeatherController(weatherHelper);
+</script>
+</html>
