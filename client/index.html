@@ -4,23 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Weather App</title>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
 </head>
 <body>
-    <h1>Weather App for dummies</h1>
-    <textarea id="city-name"></textarea>
-    <button id="getCityWeather" class="btn-controll" onclick="weatherController.getCityWeather()" type="button">Start</button>
-    <div id="city-weather" style="display: none;"></div>
+    <div class="main">
+        <h1>Weather App for dummies</h1>
+        <div class="enter-input">
+            <textarea id="city-name" placeholder="City, Country Code e.g.: US" onkeypress="controller.enterKey(event)"></textarea>
+            <select name="temperature-type" id="temperature-type" onchange="controller.setTemperature(this)">
+                <option value="Kelvin" id="0">K</option>
+                <option value="Celsius" id="1" selected>C</option>
+                <option value="Farenheint" id="2">F</option> 
+            </select>
+            <button id="getCityWeather" class="btn-controll" onclick="controller.updateWeatherInformation()" type="button">Start</button>
+        </div>
+        <div class="city-weather" id="city-weather" style="display: none;"></div>
+        <div id="map" class="map"></div>
+    </div>
 </body>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList"></script>
 <script src="views/View.js"></script>
 <script src="services/Bind.js"></script>
 <script src="services/ProxyFactory.js"></script>
+<script src="controllers/Controller.js"></script>
 <script src="controllers/WeatherController.js"></script>
-<script src="helpers/WeatherHelper.js"></script>
+<script src="controllers/MapCotroller.js"></script>
+<script src="helpers/Helper.js"></script>
 <script src="models/WeatherModel.js"></script>
+<script src="models/MapModel.js"></script>
+<script src="views/MapView.js"></script>
 <script src="views/WeatherView.js"></script>
 <script>
-    let weatherHelper = new WeatherHelper();
-    let weatherController = new WeatherController(weatherHelper);
+    let helper = new Helper();
+    let weatherController = new WeatherController(helper);
+    let mapController = new MapController(helper);
+    let controller = new Controller(weatherController, mapController);
 </script>
 </html>

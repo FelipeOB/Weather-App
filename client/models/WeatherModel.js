@@ -3,6 +3,7 @@ class WeatherModel{
         this._city = "";
         this._country = "";
         this._timezone = "";
+        this._localTime = "";
         this._mainInfo = {
             _temp: "",
             _tempMax: "",
@@ -12,7 +13,8 @@ class WeatherModel{
         }
         this._weather = {
             _main: "",
-            _description: ""
+            _description: "",
+            _icon: ""
         }
         this._wind = {
             _deg: "",
@@ -41,6 +43,12 @@ class WeatherModel{
     set timezone(timezone){
         this._timezone = timezone;
     }
+    get localTime(){
+        return this._localTime;
+    }
+    set localTime(localTime){
+        this._localTime = localTime;
+    }
     get mainInfo(){
         return this._mainInfo;
     }
@@ -57,6 +65,7 @@ class WeatherModel{
     set weather(weather){
         this._weather._main = weather[0].main;
         this._weather._description = weather[0].description;
+        this._weather._icon = weather[0].icon;
     }
     get wind(){
         return this._wind;

@@ -10,7 +10,7 @@ const app = express();
 const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
-//const routes = require('../app/routes');
+const routes = require('../app/routes');
 //const mongoose = require('./database.js');
 
 app.set('clientPath', path.join(__dirname, '../../', 'client'));
@@ -24,5 +24,5 @@ app.use(function(req, res, next) {
   next();
 });
 
-//routes(app);
+routes(app);
 module.exports = app;
