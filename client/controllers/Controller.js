@@ -8,19 +8,22 @@ class Controller{
 
     async updateWeatherInformation(){
         this._cityWeather = await this._weatherController.getCityWeather();
+        if(this._cityWeather == null) return;
         this._weatherController._updateWeatherModel(this._cityWeather);
         this.setTemperature(this.$('#temperature-type'));
         this._mapController.updateMapCoordinates(this._cityWeather.coord);
     }
 
     setTemperature(typeTemperature){
+        let weatherTemperature;
         if(typeTemperature.options[typeTemperature.selectedIndex].id == "1"){
-            this._weatherController._setWeatherTemperatureCelcius(this._cityWeather.main);
+            weatherTemperature = this._weatherController._setWeatherTemperatureCelcius(this._cityWeather.main);
         }else if(typeTemperature.options[typeTemperature.selectedIndex].id == "2"){
-            this._weatherController._setWeatherTemperatureFahrenheit(this._cityWeather.main);
+            weatherTemperature = this._weatherController._setWeatherTemperatureFahrenheit(this._cityWeather.main);
         }else{
-            this._weatherController._setWeatherTemperatureKelvin(this._cityWeather.main);
+            weatherTemperature = this._weatherController._setWeatherTemperatureKelvin(this._cityWeather.main);
         }
+        this._weatherController._setWeatherTemperature(weatherTemperature);
     }
 
     enterKey(event){

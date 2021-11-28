@@ -1,6 +1,15 @@
 class Helper{
     async getCityWeather(city){
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=2d4c97c5ae4ff929981327b8a849f513`);//to do: try and treat input data
+        let weatherApiKey = await this.getWeatherApiKey();
+        if (weatherApiKey == null){
+            let err = {
+                err: true,
+                code: "000",
+                message: "No API key registered"
+            }
+            return err;
+        }
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}`);//to do: try and treat input data
         let cityWeather = await response.json();
         if(cityWeather.cod == 400 || cityWeather.cod == 404) {
             let err = {
@@ -11,5 +20,12 @@ class Helper{
             return err;
         };
         return cityWeather;
+    }
+
+    async getWeatherApiKey(){
+        let response = await fetch('/weather-api');
+        let weatherApiKey = await response.json();
+        if(weatherApiKey == null) return null;
+        return weatherApiKey;
     }
 }

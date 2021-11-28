@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css" type="text/css">
     <link rel="stylesheet" href="/styles/style.css">
     <title>Weather App</title>
@@ -11,9 +14,9 @@
 </head>
 <body>
     <div class="main">
-        <h1>Weather App for dummies</h1>
+        <h1 class="title">Weather App for dummies</h1>
         <div class="enter-input">
-            <textarea id="city-name" placeholder="City, Country Code e.g.: US" onkeypress="controller.enterKey(event)"></textarea>
+            <input id="city-name" placeholder="City, Country Code e.g.: US" onkeypress="controller.enterKey(event)" style="resize: none; width: 170px;"></input>
             <select name="temperature-type" id="temperature-type" onchange="controller.setTemperature(this)">
                 <option value="Kelvin" id="0">K</option>
                 <option value="Celsius" id="1" selected>C</option>
